@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>مدرسه سرمایه‌گذاری | آموزش کسب درآمد</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
+    <style>
+        /* استایل‌های عمومی */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazir', 'Segoe UI', Tahoma, sans-serif;
+        }
+        
+        :root {
+            --primary: #2E7D32;
+            --secondary: #4CAF50;
+            --accent: #FF9800;
+            --dark: #1B5E20;
+            --light: #E8F5E9;
+            --text: #333333;
+            --gray: #757575;
+            --card-bg: #FFFFFF;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: var(--text);
+            line-height: 1.6;
+            padding-bottom: 80px;
+        }
+        
+        /* هدر و ناوبری */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 20px 15px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        
+        .logo-icon {
+            font-size: 28px;
+            margin-left: 10px;
+        }
+        
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .tagline {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        /* محتوای اصلی */
+        .container {
+            max-width: 100%;
+            padding: 15px;
+        }
+        
+        /* بخش‌های اپ */
+        .section {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 18px;
+            color: var(--primary);
+            font-size: 1.2rem;
+            border-bottom: 2px solid var(--light);
+            padding-bottom: 10px;
+        }
+        
+        .section-title i {
+            margin-left: 8px;
+            font-size: 1.3rem;
+        }
+        
+        /* کارت‌های دوره */
+        .course-card {
+            background-color: var(--light);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border-right: 5px solid var(--secondary);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .course-title {
+            color: var(--dark);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .course-level {
+            background-color: var(--accent);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+        }
+        
+        .course-desc {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+        }
+        
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+        
+        /* دکمه‌ها */
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+        
+        .btn:hover {
+            background-color: var(--dark);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: var(--accent);
+        }
+        
+        /* فهرست درس‌ها */
+        .lesson-list {
+            list-style-type: none;
+        }
+        
+        .lesson-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            border-right: 3px solid var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .lesson-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .lesson-number {
+            background-color: var(--primary);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 12px;
+            font-size: 0.9rem;
+        }
+        
+        /* پشتیبانی آنلاین */
+        .support-card {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            color: white;
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        .support-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .support-title i {
+            margin-left: 8px;
+        }
+        
+        /* فوتر و ناوبری پایین */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 0.8rem;
+            flex: 1;
+        }
+        
+        .nav-item.active {
+            color: var(--primary);
+        }
+        
+        .nav-item i {
+            font-size: 1.3rem;
+            margin-bottom: 4px;
+        }
+        
+        /* مودال و پاپ‌آپ */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: modalFade 0.3s;
+        }
+        
+        @keyframes modalFade {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .modal-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--gray);
+            cursor: pointer;
+        }
+        
+        /* حالت‌های مختلف صفحه */
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        /* صفحه درس */
+        .lesson-content {
+            line-height: 1.8;
+        }
+        
+        .lesson-content h3 {
+            color: var(--primary);
+            margin: 20px 0 10px 0;
+            font-size: 1.2rem;
+        }
+        
+        .lesson-content p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .lesson-content ul {
+            margin-right: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .lesson-content li {
+            margin-bottom: 8px;
+        }
+        
+        /* ریسپانسیو */
+        @media (min-width: 768px) {
+            .container {
+                max-width: 700px;
+                margin: 0 auto;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .course-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .course-card {
+                margin-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- هدر اپلیکیشن -->
+    <header>
+        <div class="logo-container">
+            <div class="logo-icon">💼</div>
+            <div>
+                <h1>مدرسه سرمایه‌گذاری</h1>
+                <div class="tagline">آموزش عملی کسب درآمد و مدیریت سرمایه</div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+    <!-- صفحه اصلی -->
+    <div id="home-page" class="page active">
+        <!-- بخش معرفی -->
+        <div class="section">
+            <div class="section-title">
+                <i>🎯</i>
+                <span>درباره این دوره</span>
+            </div>
+            <p>به اپلیکیشن تخصصی آموزش کسب درآمد و سرمایه‌گذاری خوش آمدید. این دوره جامع، شما را از مفاهیم پایه تا تکنیک‌های پیشرفته راهنمایی می‌کند تا بتوانید درآمد خود را افزایش داده و سرمایه‌گذاری هوشمندانه‌ای داشته باشید.</p>
+            <p><strong>مدرس:</strong> تیم تخصصی مالی با ۱۰ سال تجربه</p>
+            <p><strong>مدت دوره:</strong> ۸ هفته (پشتیبانی دائمی)</p>
+            <button class="btn" onclick="showPage('courses')">شروع یادگیری</button>
+        </div>
+        
+        <!-- دوره‌های آموزشی -->
+        <div class="section">
+            <div class="section-title">
+                <i>📚</i>
+                <span>دوره‌های آموزشی</span>
+            </div>
+            <div class="course-grid">
+                <div class="course-card">
+                    <div class="course-title">
+                        <span>اصول سرمایه‌گذاری</span>
+                        <span class="course-level">مبتدی</span>
+                    </div>
+                    <div class="course-desc">آشنایی با مفاهیم پایه بازارهای مالی، ریسک و بازده</div>
+                    <div class="course-meta">
+                        <span>📊 ۱۲ درس</span>
+                        <span>⏱️ ۶ ساعت</span>
+                    </div>
+                    <button class="btn" onclick="openCourse(1)">مشاهده دروس</button>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-title">
+                        <span>کسب درآمد آنلاین</span>
+                        <span class="course-level">متوسط</span>
+                    </div>
+                    <div class="course-desc">راه‌های عملی کسب درآمد از اینترنت و مدیریت پروژه</div>
+                    <div class="course-meta">
+                        <span>💻 ۱۰ درس</span>
+                        <span>⏱️ ۸ ساعت</span>
+                    </div>
+                    <button class="btn" onclick="openCourse(2)">مشاهده دروس</button>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-title">
+                        <span>سرمایه‌گذاری در بورس</span>
+                        <span class="course-level">پیشرفته</span>
+                    </div>
+                    <div class="course-desc">تحلیل تکنیکال، فاندامنتال و استراتژی معاملاتی</div>
+                    <div class="course-meta">
+                        <span>📈 ۱۵ درس</span>
+                        <span>⏱️ ۱۰ ساعت</span>
+                    </div>
+                    <button class="btn" onclick="openCourse(3)">مشاهده دروس</button>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-title">
+                        <span>مدیریت مالی شخصی</span>
+                        <span class="course-level">مبتدی</span>
+                    </div>
+                    <div class="course-desc">بودجه‌بندی، پس‌انداز و برنامه‌ریزی مالی خانواده</div>
+                    <div class="course-meta">
+                        <span>💰 ۸ درس</span>
+                        <span>⏱️ ۵ ساعت</span>
+                    </div>
+                    <button class="btn" onclick="openCourse(4)">مشاهده دروس</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- پشتیبانی آنلاین -->
+        <div class="support-card">
+            <div class="support-title">
+                <i>💬</i>
+                <span>پشتیبانی آنلاین</span>
+            </div>
+            <p>سوالات خود را از پشتیبان‌های ما بپرسید. پاسخگویی در کمترین زمان ممکن.</p>
+            <button class="btn btn-secondary" onclick="openSupport()">شروع گفتگو</button>
+        </div>
+    </div>
+    
+    <!-- صفحه دوره‌ها -->
+    <div id="courses-page" class="page">
+        <div class="section">
+            <div class="section-title">
+                <i>📖</i>
+                <span>لیست درس‌های دوره</span>
+            </div>
+            <div id="lessons-list"></div>
+        </div>
+    </div>
+    
+    <!-- صفحه درس -->
+    <div id="lesson-page" class="page">
+        <div class="section">
+            <div class="section-title">
+                <i>📝</i>
+                <span id="lesson-title">عنوان درس</span>
+            </div>
+            <div id="lesson-content" class="lesson-content"></div>
+        </div>
+    </div>
+    
+    <!-- صفحه پروفایل -->
+    <div id="profile-page" class="page">
+        <div class="section">
+            <div class="section-title">
+                <i>👤</i>
+                <span>پروفایل کاربری</span>
+            </div>
+            <div style="text-align: center; margin: 20px 0;">
+                <div style="font-size: 3rem; margin-bottom: 10px;">👤</div>
+                <h3>کاربر عزیز</h3>
+                <p style="color: var(--gray); margin-bottom: 20px;">به مدرسه سرمایه‌گذاری خوش آمدید</p>
+            </div>
+            
+            <div style="background-color: var(--light); padding: 15px; border-radius: 12px; margin-bottom: 15px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                    <span>پیشرفت کلی:</span>
+                    <span>۲۵٪</span>
+                </div>
+                <div style="height: 8px; background-color: #ddd; border-radius: 4px; overflow: hidden;">
+                    <div style="width: 25%; height: 100%; background-color: var(--secondary);"></div>
+                </div>
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <div style="font-weight: bold; margin-bottom: 10px;">دوره‌های در حال یادگیری:</div>
+                <div style="display: flex; align-items: center; padding: 10px; background-color: #f9f9f9; border-radius: 10px; margin-bottom: 8px;">
+                    <span>📊</span>
+                    <div style="flex-grow: 1; margin-right: 10px;">
+                        <div>اصول سرمایه‌گذاری</div>
+                        <div style="font-size: 0.8rem; color: var(--gray);">۴ از ۱۲ درس</div>
+                    </div>
+                    <span>۳۳٪</span>
+                </div>
+            </div>
+            
+            <button class="btn" onclick="showPage('home')">بازگشت به صفحه اصلی</button>
+        </div>
+    </div>
+</div>
+<!-- مودال پشتیبانی -->
+<div id="support-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="modal-title">💬 پشتیبانی آنلاین</div>
+            <button class="close-btn" onclick="closeSupport()">×</button>
+        </div>
+        <p>برای ارتباط با پشتیبان‌های ما، از یکی از روش‌های زیر استفاده کنید:</p>
+        
+        <div style="margin: 20px 0;">
+            <div style="background-color: #f0f9ff; padding: 15px; border-radius: 10px; margin-bottom: 15px; border-right: 4px solid #2196F3;">
+                <div style="font-weight: bold; margin-bottom: 5px;">📱 پیام در واتساپ</div>
+                <div style="color: var(--gray); font-size: 0.9rem;">برای گفتگو مستقیم با پشتیبان</div>
+                <button class="btn" style="margin-top: 10px; background-color: #25D366;" onclick="openWhatsApp()">ارتباط در واتساپ</button>
+            </div>
+            
+            <div style="background-color: #fff3e0; padding: 15px; border-radius: 10px; margin-bottom: 15px; border-right: 4px solid #FF9800;">
+                <div style="font-weight: bold; margin-bottom: 5px;">✉️ ارسال ایمیل</div>
+                <div style="color: var(--gray); font-size: 0.9rem;">پاسخگویی در کمتر از ۲۴ ساعت</div>
+                <button class="btn" style="margin-top: 10px; background-color: #EA4335;" onclick="sendEmail()">ارسال ایمیل</button>
+            </div>
+            
+            <div style="background-color: #f3e5f5; padding: 15px; border-radius: 10px; border-right: 4px solid #9C27B0;">
+                <div style="font-weight: bold; margin-bottom: 5px;">📞 تماس تلفنی</div>
+                <div style="color: var(--gray); font-size: 0.9rem;">پاسخگویی در ساعات اداری</div>
+                <div style="direction: ltr; text-align: center; margin: 10px 0; font-family: monospace; font-size: 1.1rem;">۰۲۱-۱۲۳۴۵۶۷۸</div>
+            </div>
+        </div>
+        
+        <p style="font-size: 0.9rem; color: var(--gray); text-align: center; margin-top: 20px;">ساعات پاسخگویی: شنبه تا چهارشنبه ۹ صبح تا ۵ عصر</p>
+    </div>
+</div>
+
+<!-- ناوبری پایین -->
+<div class="bottom-nav">
+    <a href="#" class="nav-item active" onclick="showPage('home'); setActiveNav(this); return false;">
+        <div>🏠</div>
+        <span>خانه</span>
+    </a>
+    <a href="#" class="nav-item" onclick="showPage('courses'); setActiveNav(this); return false;">
+        <div>📚</div>
+        <span>دوره‌ها</span>
+    </a>
+    <a href="#" class="nav-item" onclick="openSupport(); return false;">
+        <div>💬</div>
+        <span>پشتیبانی</span>
+    </a>
+    <a href="#" class="nav-item" onclick="showPage('profile'); setActiveNav(this); return false;">
+        <div>👤</div>
+        <span>پروفایل</span>
+    </a>
+</div>
+    <script>
+        // داده‌های درس‌ها
+        const coursesData = {
+            1: {
+                title: "اصول سرمایه‌گذاری",
+                lessons: [
+                    {
+                        id: 1,
+                        title: "مقدمه‌ای بر سرمایه‌گذاری",
+                        content: `
+                            <h3>سرمایه‌گذاری چیست؟</h3>
+                            <p>سرمایه‌گذاری به معنای تخصیص منابع مالی به دارایی‌هایی است که انتظار می‌رود در آینده بازدهی ایجاد کنند. هدف اصلی سرمایه‌گذاری، حفظ و افزایش ارزش پول در طول زمان است.</p>
+                            
+                            <h3>چرا سرمایه‌گذاری مهم است؟</h3>
+                            <ul>
+                                <li>مقابله با تورم و حفظ قدرت خرید</li>
+                                <li>ایجاد درآمد غیرفعال</li>
+                                <li>تحقق اهداف مالی بلندمدت</li>
+                                <li>استقلال مالی در آینده</li>
+                            </ul>
+                            
+                            <h3>انواع سرمایه‌گذاری</h3>
+                            <p>سرمایه‌گذاری‌ها به دو دسته اصلی تقسیم می‌شوند:</p>
+                            <ul>
+                                <li><strong>سرمایه‌گذاری در دارایی‌های واقعی:</strong> مانند املاک، طلا و خودرو</li>
+                                <li><strong>سرمایه‌گذاری در دارایی‌های مالی:</strong> مانند سهام، اوراق قرضه و صندوق‌های سرمایه‌گذاری</li>
+                            </ul>
+                            
+                            <h3>اصل اول: درک رابطه ریسک و بازده</h3>
+                            <p>همیشه بین ریسک و بازده رابطه مستقیم وجود دارد. هرچه بازده بالقوه یک سرمایه‌گذاری بیشتر باشد، ریسک آن نیز بیشتر است.</p>
+                        `
+                    },
+                    {
+                        id: 2,
+                        title: "تنوع بخشی در سرمایه‌گذاری",
+                        content: `
+                            <h3>اهمیت تنوع بخشی</h3>
+                            <p>تنوع بخشی به معنای تقسیم سرمایه بین دارایی‌های مختلف است تا ریسک کلی کاهش یابد. این اصل مهمترین راه کاهش ریسک در سرمایه‌گذاری است.</p>
+                            
+                            <h3>روش‌های تنوع بخشی</h3>
+                            <ul>
+                                <li>تنوع بین انواع دارایی‌ها (سهام، اوراق، ملک)</li>
+                                <li>تنوع در صنایع مختلف</li>
+                                <li>تنوع جغرافیایی (سرمایه‌گذاری در بازارهای مختلف)</li>
+                                <li>تنوع زمانی (خرید در زمان‌های مختلف)</li>
+                            </ul>
+                            
+                            <h3>سبد سرمایه‌گذاری ایده‌آل</h3>
+                            <p>یک سبد متعادل باید ترکیبی از دارایی‌های با ریسک مختلف باشد. معمولاً توصیه می‌شود با افزایش سن، درصد دارایی‌های کم‌ریسک را افزایش دهید.</p>
+                        `
+                    },
+                    {
+                        id: 3,
+                        title: "نحوه تعیین اهداف مالی",
+                        content: `
+                            <h3>چرا تعیین هدف مهم است؟</h3>
+                            <p>اهداف مالی مشخص، مسیر سرمایه‌گذاری شما را تعیین می‌کنند. بدون هدف مشخص، نمی‌توانید استراتژی مناسبی انتخاب کنید.</p>
+                            
+                            <h3>ویژگی‌های هدف مالی خوب</h3>
+                            <ul>
+                                <li><strong>مشخص (Specific):</strong> دقیقاً بدانید چه می‌خواهید</li>
+                                <li><strong>قابل اندازه‌گیری (Measurable):</strong> بتوانید پیشرفت را اندازه بگیرید</li>
+                                <li><strong>دستیافتنی (Achievable):</strong> با امکانات شما سازگار باشد</li>
+                                <li><strong>مربوط (Relevant):</strong> با ارزش‌های شما همخوانی داشته باشد</li>
+                                <li><strong>زمان‌بندی شده (Time-bound):</strong> مهلت مشخص داشته باشد</li>
+                            </ul>
+                            
+                            <h3>مثال‌هایی از اهداف مالی</h3>
+                            <ul>
+                                <li>پس‌انداز ۵۰۰ میلیون تومان برای خرید خانه در ۵ سال آینده</li>
+                                <li>تأمین ۲۰۰ میلیون تومان برای هزینه تحصیل فرزند در ۱۰ سال آینده</li>
+                                <li>ایجاد درآمد ماهانه ۱۰ میلیون تومانی از سرمایه‌گذاری در ۱۵ سال آینده</li>
+                            </ul>
+                        `
+                    }
+                ]
+            },
+            2: {
+                title: "کسب درآمد آنلاین",
+                lessons: [
+                    {
+                        id: 1,
+                        title: "فرصت‌های کسب درآمد اینترنتی",
+                        content: "محتوا برای کسب درآمد آنلاین..."
+                    },
+                    {
+                        id: 2,
+                        title: "ایده‌های کسب درآمد با سرمایه کم",
+                        content: "محتوا برای ایده‌های سرمایه کم..."
+                    }
+                ]
+            },
+            3: {
+                title: "سرمایه‌گذاری در بورس",
+                lessons: [
+                    {
+                        id: 1,
+                        title: "آشنایی با بازار بورس ایران",
+                        content: "محتوا برای بازار بورس..."
+                    }
+                ]
+            },
+            4: {
+                title: "مدیریت مالی شخصی",
+                lessons: [
+                    {
+                        id: 1,
+                        title: "اصول بودجه‌بندی خانوار",
+                        content: "محتوا برای بودجه‌بندی..."
+                    }
+                ]
+            }
+        };
+
+        // متغیرهای سیستمی
+        let currentCourseId = null;
+        let currentLessonId = null;
+
+        // توابع مدیریت صفحات
+        function showPage(pageId) {
+            // مخفی کردن همه صفحات
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // نمایش صفحه مورد نظر
+            const targetPage = document.getElementById(pageId + '-page');
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+        }
+
+        function setActiveNav(clickedItem) {
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.classList.remove('active');
+            });
+            clickedItem.classList.add('active');
+        }
+
+        // توابع مدیریت دوره‌ها و درس‌ها
+        function openCourse(courseId) {
+            currentCourseId = courseId;
+            const course = coursesData[courseId];
+            
+            // به روزرسانی عنوان
+            document.getElementById('courses-page').querySelector('.section-title span').textContent = 
+                `درس‌های دوره ${course.title}`;
+            
+            // تولید لیست درس‌ها
+            const lessonsList = document.getElementById('lessons-list');
+            lessonsList.innerHTML = '';
+            
+            course.lessons.forEach(lesson => {
+                const lessonItem = document.createElement('div');
+                lessonItem.className = 'lesson-item';
+                lessonItem.innerHTML = `
+                    <div class="lesson-info">
+                        <div class="lesson-number">${lesson.id}</div>
+                        <div>${lesson.title}</div>
+                    </div>
+                    <button class="btn" style="padding: 8px 16px; width: auto;" onclick="openLesson(${courseId}, ${lesson.id})">مطالعه</button>
+                `;
+                lessonsList.appendChild(lessonItem);
+            });
+            
+            showPage('courses');
+            setActiveNav(document.querySelector('.nav-item:nth-child(2)'));
+        }
+
+        function openLesson(courseId, lessonId) {
+            currentCourseId = courseId;
+            currentLessonId = lessonId;
+            
+            const course = coursesData[courseId];
+            const lesson = course.lessons.find(l => l.id === lessonId);
+            
+            if (lesson) {
+                document.getElementById('lesson-title').textContent = lesson.title;
+                document.getElementById('lesson-content').innerHTML = lesson.content;
+                showPage('lesson');
+            }
+        }
+
+        // توابع پشتیبانی
+        function openSupport() {
+            document.getElementById('support-modal').style.display = 'flex';
+        }
+
+        function closeSupport() {
+            document.getElementById('support-modal').style.display = 'none';
+        }
+
+        function openWhatsApp() {
+            const phone = "989123456789"; // شماره موبایل پشتیبانی
+            const message = "سلام، از اپلیکیشن آموزش سرمایه‌گذاری درخواست پشتیبانی دارم.";
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        function sendEmail() {
+            const email = "support@investment-school.ir";
+            const subject = "درخواست پشتیبانی از اپلیکیشن";
+            const body = "سلام،\n\nلطفاً در مورد موارد زیر راهنمایی ام کنید:\n\n";
+            window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        // بارگذاری اولیه
+        document.addEventListener('DOMContentLoaded', function() {
+            // تنظیم صفحه اول
+            showPage('home');
+            
+            // بستن مودال با کلیک خارج از آن
+            const modal = document.getElementById('support-modal');
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeSupport();
+                }
+            });
+            
+            // اضافه کردن درس‌های نمونه بیشتر
+            addSampleLessons();
+        });
+
+        // اضافه کردن درس‌های نمونه بیشتر
+        function addSampleLessons() {
+            // اضافه کردن درس‌های بیشتر به دوره اول
+            const additionalLessons = [
+                {
+                    id: 4,
+                    title: "راهکارهای مقابله با تورم",
+                    content: "محتوا برای مقابله با تورم..."
+                },
+                {
+                    id: 5,
+                    title: "صندوق‌های سرمایه‌گذاری",
+                    content: "محتوا برای صندوق‌های سرمایه‌گذاری..."
+                },
+                {
+                    id: 6,
+                    title: "بررسی بازار طلا و ارز",
+                    content: "محتوا برای بازار طلا و ارز..."
+                }
+            ];
+            
+            // اضافه کردن دروس به دوره اول
+            coursesData[1].lessons = [...coursesData[1].lessons, ...additionalLessons];
+        }
+    </script>
+</body>
+</html>
